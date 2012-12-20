@@ -1,0 +1,31 @@
+{
+    "name" : "archified",
+    "description" : "an enhanced archify experience",
+    "version" : "2012.12.19",
+    "background" : {
+	"scripts" : [
+	    "eventPage.js"
+	],
+	"persistence" : false
+    },
+    "content_scripts" : [
+	{
+	    "js" : [
+		"archified.user.js"
+	    ],
+	    "matches" : [
+		"http://archify.com/*",
+		"https://archify.com/*",
+		"http://*.archify.com/*",
+		"https://*.archify.com/*"
+	    ]
+	}
+    ],
+    "icons" : {
+	"128" : "icon_128.png"
+    },
+    "permissions" : [
+	"storage", "tabs"
+    ],
+    "manifest_version" : 2
+}

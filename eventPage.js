@@ -1,18 +1,24 @@
 function getHiddenResults(){
+    var fetchCompleted = new Boolean(false);
     chrome.storage.sync.get("hiddenResults", function(item){
 	hiddenResults = item.hiddenResults;
+	fetchCompleted = true;
     });
 
-    while (!hiddenResults) {}
+    while (!hiddenResults) {
+	if (fetchCompleted) {
+	    break;
+	}
+    }
 
     return hiddenResults;
 }
 
 function pushHiddenResult(id){
     chrome.storage.sync.get("hiddenResults", function(item){
-	if (Object.prototype.toString.call( item.hiddenResults ) === '[object Array]') {
-	    hiddenResults = item.hiddenResults;
-	} else {
+	hiddenResults = item.hiddenResults;
+
+	if (!hiddenResults) {
 	    var hiddenResults = new Array;
 	}
 
